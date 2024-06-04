@@ -1,6 +1,6 @@
 # AWS Swiss Army Knife
 
-Tips and Tricks from a compiled of commands using the AWS CLI + JSON Query and Shell Script
+Tips & Tricks for the AWS CLI commands and JSON query combinations for precise data extraction sometimes using a little of Shell scripting for automation, orchestration and gathering information
 
 
 
