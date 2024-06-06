@@ -10,28 +10,36 @@
 `aws lambda list-functions | jq -r '.Functions[] | [.FunctionName,.LastModified] | join (" ~~>> ")'`
 
 ## Get Lambda Functions and Policy from them
+
+```sh
 for x in $(aws lambda list-functions --region sa-east-1 | jq -r '.Functions[].FunctionName')
 do
   echo aws lambda get-policy --region sa-east-1 --function-name $x
 done
+```
 
 ## Get Logs filtered by Lambdas log-group
-aws logs describe-log-groups | jq -r '.logGroups[].logGroupName' | egrep -e /aws/lambda
+
+`$ aws logs describe-log-groups | jq -r '.logGroups[].logGroupName' | egrep -e /aws/lambda`
 
 ## Get Logs from Lambdas concatenating LogroupName + Last Log Stream of them
+
+```sh
 #!/bin/bash
 
-# LOG_GROUP=$(aws logs describe-log-groups --region sa-east-1 | jq -r '.logGroups[].logGroupName' | egrep -e /aws/lambda | sort)
-# LOG_STREAM=" "
+##Example
+LOG_GROUP=$(aws logs describe-log-groups --region sa-east-1 | jq -r '.logGroups[].logGroupName' | egrep -e /aws/lambda | sort)
 
-# for x in $LOG_GROUP 
-# do
-#   LOG_STREAM="$LOG_STREAM$(aws logs describe-log-streams --log-group-name $x --max-items 1 --order-by LastEventTime --descending | jq -r '.logStreams[].logStreamName')"
-# done
+LOG_STREAM=" "
 
-# read $LOG_GROUP $LOG_STREAM
-# R="$LOG_GROUP ; $LOG_STREAM"
-# echo $R
+for x in $LOG_GROUP 
+do
+  LOG_STREAM="$LOG_STREAM$(aws logs describe-log-streams --log-group-name $x --max-items 1 --order-by LastEventTime --descending | jq -r '.logStreams[].logStreamName')"
+done
+
+read $LOG_GROUP $LOG_STREAM
+R="$LOG_GROUP ; $LOG_STREAM"
+echo $R
 
 LOG_GROUP=$(aws logs describe-log-groups --region sa-east-1| jq -r '.logGroups[].logGroupName' | egrep -e /aws/lambda | sort)
 
@@ -39,4 +47,4 @@ for x in $LOG_GROUP
 do
   echo "$x;$(aws logs describe-log-streams --log-group-name $x --max-items 1 --order-by LastEventTime --descending | jq -r '.logStreams[].logStreamName')"
 done
-
+```
