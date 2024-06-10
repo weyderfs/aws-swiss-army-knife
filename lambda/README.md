@@ -3,7 +3,7 @@
 
 ## List Lambdas by Function Names
 
-`$ aws lambda list-functions --region sa-east-1 | jq -r '.Functions[] | .FunctionName'`
+`$ aws lambda list-functions --profile prd | jq -r '.Functions[].FunctionName'`
 
 ## List Lambdas by Function Name and Filter by LastModified
 
