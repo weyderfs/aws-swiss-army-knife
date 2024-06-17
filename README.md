@@ -7,6 +7,10 @@ Tips & Tricks for the AWS CLI commands and JSON query combinations for precise d
     <img src="assets/logo.jpeg" width="300" height="300">
 </div>
 
+## EC2
+
+> For AWS EC2 check de file [EC2](ec2/README.md)
+
 ## Bucket S3
 
 > For AWS S3 check the [S3 README](s3-bucket/README.md).
