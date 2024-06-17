@@ -15,3 +15,19 @@ Tips & Tricks for the AWS CLI commands and JSON query combinations for precise d
 
 > For tips and tricks with AWS Lambdas check the [lambda](lambda/README.md) directory.
 
+## IAM
+
+Following bellow the commands by type
+
+### User
+
+> For IAM User tips and tricks check the [IAM/User](iam/user/README.md).
+
+### Role
+
+> For IAM Role tips and tricks check the [IAM/Role](iam/role/README.md).
+
+### Policy
+
+> For IAM Policy tips and tricks check the [IAM/Policy](iam/policy/README.md).
+
